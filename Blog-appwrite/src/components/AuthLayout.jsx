@@ -11,10 +11,10 @@ export default function Protected({ children, authentication = true }) {
     if (authentication && authStatus !== authentication) {
       navigate("/login");
     } else if (!authentication && authStatus !== authentication) {
-      navigate("/");
+      navigate("/all-posts");
     }
     setLoader(false);
   }, [authStatus, navigate, authentication]);
 
-  return loader ? <h1>Loading...</h1> : <>{children}</>;
+  return loader ? <h1 className="text-4xl">Loading..</h1> : <>{children}</>;
 }

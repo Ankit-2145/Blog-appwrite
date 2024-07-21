@@ -4,24 +4,24 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
 
   const navItems = [
     {
-      name: "Home",
+      name: "",
       slug: "/",
-      active: true,
+      active: authStatus,
     },
     {
-      name: "Login",
+      name: "Sign In",
       slug: "/login",
       active: !authStatus,
     },
     {
-      name: "Signup",
-      slug: "/signup",
+      name: "Sign Up",
+      slug: "/Signup",
       active: !authStatus,
     },
     {
@@ -35,13 +35,14 @@ const Header = () => {
       active: authStatus,
     },
   ];
+
   return (
-    <header className="py-3 shadow bg-gray-500">
+    <header className="py-3">
       <Container>
         <nav className="flex">
-          <div className="mr-4">
+          <div className="-mb-2">
             <Link to="/">
-              <Logo width="70px" />
+              <Logo />
             </Link>
           </div>
           <ul className="flex ml-auto">
@@ -50,7 +51,7 @@ const Header = () => {
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                    className="text-base inline-block text-black px-4 py-2 mr-2 duration-150 transition-all hover:text-white hover:bg-blue-500 font-medium rounded-full"
                   >
                     {item.name}
                   </button>
@@ -67,6 +68,6 @@ const Header = () => {
       </Container>
     </header>
   );
-};
+}
 
 export default Header;
