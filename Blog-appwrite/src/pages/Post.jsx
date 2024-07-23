@@ -26,27 +26,28 @@ export default function Post() {
   return post ? (
     <div className="py-8 bg-gradient-to-r from-rose-100 to-teal-100">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative rounded-xl p-2">
+        <div className="max-w-md mx-auto  flex justify-center mb-4 relative rounded-xl p-2">
           <img
             src={appwriteService.getFilePreview(post.featuredImage)}
             alt={post.title}
             className="rounded-xl w-1/2"
           />
-
+        </div>
+        <div className="w-fit mx-auto mb-6 bg-white text-center rounded-md p-8">
+          <h1 className="text-2xl font-bold text-black">{post.title}</h1>
+          <div className="browser-css text-center text-black my-3">
+            {parse(post.content)}
+          </div>
           {isAuthor && (
-            <div className="absolute right-6 top-6">
+            <div>
               <Link to={`/edit-post/${post.$id}`}>
                 <Button bgColor="bg-green-500" className="mr-3">
-                  Edit
+                  Edit Notice
                 </Button>
               </Link>
             </div>
           )}
         </div>
-        <div className="w-full mb-6 text-center">
-          <h1 className="text-2xl font-bold text-black">{post.title}</h1>
-        </div>
-        <div className="browser-css text-left text-black">{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;

@@ -4,6 +4,8 @@ import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -47,10 +49,12 @@ export default function PostForm({ post }) {
           ...data,
           userId: userData.$id,
         });
-
-        if (dbPost) {
-          navigate(`/all-posts`);
-        }
+        toast.success("Notice added successfully");
+        setTimeout(() => {
+          if (dbPost) {
+            navigate(`/all-posts`);
+          }
+        }, 1500);
       }
     }
   };
@@ -169,7 +173,10 @@ export default function PostForm({ post }) {
                   In Status, keep it active to show the notice or set to
                   inactive to hide it, if you don't want to delete it.
                 </li>
-                <li>Keep in mind that all fields are compulsory to fill.</li>
+                <li>
+                  Remember that all fields are compulsory to fill except
+                  featuredImage.
+                </li>
                 <p className="my-4">
                   Remember to meet these requirements or else the notice will
                   not be Added.
@@ -179,6 +186,19 @@ export default function PostForm({ post }) {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
     </form>
   );
 }
