@@ -35,7 +35,7 @@ export default function PostForm({ post }) {
       });
 
       if (dbPost) {
-        navigate(`/post/${dbPost.$id}`);
+        navigate(`/all-posts`);
       }
     } else {
       const file = await appwriteService.uploadFile(data.image[0]);
@@ -49,7 +49,7 @@ export default function PostForm({ post }) {
         });
 
         if (dbPost) {
-          navigate(`/post/${dbPost.$id}`);
+          navigate(`/all-posts`);
         }
       }
     }
@@ -77,16 +77,19 @@ export default function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+    <form
+      onSubmit={handleSubmit(submit)}
+      className="flex flex-col-reverse md:flex-row flex-wrap"
+    >
+      <div className="w-full md:w-2/3 px-2">
         <Input
-          label="Title :"
+          label="Title:"
           placeholder="Title"
           className="mb-4"
           {...register("title", { required: true })}
         />
         <Input
-          label="Slug :"
+          label="Slug:"
           placeholder="Slug"
           className="mb-4"
           {...register("slug", { required: true })}
@@ -97,42 +100,84 @@ export default function PostForm({ post }) {
           }}
         />
         <RTE
-          label="Content :"
+          label="Content:"
           name="content"
           control={control}
           defaultValue={getValues("content")}
         />
-      </div>
-      <div className="w-1/3 px-2">
         <Input
-          label="Featured Image :"
+          label="Featured Image:"
           type="file"
           className="mb-4"
-          accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
+          accept="image/png, image/jpg, image/jpeg, image/gif, application/pdf"
+          {...register("image")}
         />
         {post && (
           <div className="w-full mb-4">
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
-              alt={post.title}
+              alt="No media file was uploaded"
               className="rounded-lg"
             />
           </div>
         )}
         <Select
           options={["active", "inactive"]}
-          label="Status"
+          label="Status:"
           className="mb-4"
           {...register("status", { required: true })}
         />
-        <Button
-          type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
-        >
-          {post ? "Update" : "Submit"}
+        <Button type="submit" className="w-full my-2 hover:bg-blue-700">
+          {post ? "Update Notice" : "Add Notice"}
         </Button>
+      </div>
+      <div className="w-full md:w-1/3 pl-3 py-8">
+        <div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+          <div
+            className="flex p-2 text-sm text-blue-500 rounded-lg bg-blue-50"
+            role="alert"
+          >
+            <svg
+              className="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span className="sr-only">Info</span>
+            <div>
+              <span className="text-base font-medium">
+                Ensure that these requirements are met:
+              </span>
+              <ul className="text-base my-1.5 list-disc">
+                <li>
+                  Title Should not exceed more than 6 words (Keep it short and
+                  concise).
+                </li>
+                <li>Do not write anything in slug, it is set to autofill.</li>
+                <li>
+                  In Content the word limit is upto 30 words, word count is
+                  provided, Please do not exceed the limit.
+                </li>
+                <li>
+                  In Featured Image, upload the image/Pdf which you want to
+                  share.
+                </li>
+                <li>
+                  In Status, keep it active to show the notice or set to
+                  inactive to hide it, if you don't want to delete it.
+                </li>
+                <li>Keep in mind that all fields are compulsory to fill.</li>
+                <p className="my-4">
+                  Remember to meet these requirements or else the notice will
+                  not be Added.
+                </p>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
   );

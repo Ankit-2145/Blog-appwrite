@@ -16,12 +16,12 @@ const EditPost = () => {
         }
       });
     } else {
-      navigate("/");
+      navigate("/all-posts");
     }
   }, [slug, navigate]);
 
   return post ? (
-    <div className="py-8">
+    <div className="py-8 bg-gradient-to-r from-rose-100 to-teal-100">
       <Container>
         <PostForm post={post} />
       </Container>

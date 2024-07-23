@@ -4,7 +4,14 @@ const Select = ({ options, label, className, ...props }, ref) => {
   const id = useId();
   return (
     <div className="w-full">
-      {label && <label htmlFor={id} className=""></label>}
+      {label && (
+        <label
+          htmlFor={id}
+          className="block mb-2 text-sm font-medium text-gray-900"
+        >
+          {label}
+        </label>
+      )}
       <select
         {...props}
         id={id}

@@ -1,52 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Logo from "../Logo";
+import logo from "../../assets/PinnacleLogo.png";
 
 function Footer() {
   return (
-    <section className="relative top-full overflow-hidden bg-white py-8">
-      <div className="container relative z-10 mx-auto px-4">
-        <div className="-m-8 flex flex-wrap items-center justify-center">
-          <div className="w-auto p-4">
-            <a href="#">
-              <div className="inline-flex items-center">
-                <span className="ml-4 text-lg text-gray-500 font-medium">
-                  Pinnacle Smart Solutions |
-                </span>
-              </div>
-            </a>
-          </div>
-          <div className="w-auto p-8">
-            <ul className="-m-5 flex flex-wrap justify-center items-center">
-              <li>
-                <a
-                  className="inline-block text-white px-3 py-2 duration-200 hover:bg-white hover:text-blue-400 font-medium rounded-full"
-                  href="#"
-                >
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  className="inline-block text-white px-3 py-2 duration-200 hover:bg-white hover:text-blue-400 font-medium rounded-full"
-                  href="#"
-                >
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a
-                  className="inline-block text-white px-3 py-2 duration-200 hover:bg-white hover:text-blue-400 font-medium rounded-full"
-                  href="#"
-                >
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
+    <footer className="bg-white rounded-lg p-4">
+      <div className="w-full max-w-screen-xl mx-auto pt-4">
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <a
+            href="https://sspinnacle.com/"
+            className="flex items-center space-x-3 rtl:space-x-reverse"
+          >
+            <img src={logo} className="h-6" alt="Logo" />
+          </a>
+          <ul className="flex flex-wrap items-center text-sm font-medium text-gray-500">
+            <span className="block text-sm text-gray-500 sm:text-center">
+              © 2024{" "}
+              <a href="https://sspinnacle.com" className="hover:underline">
+                Pinnacle Smart Solutions
+              </a>
+              . All Rights Reserved.
+            </span>
+          </ul>
         </div>
       </div>
-    </section>
+    </footer>
   );
 }
 

@@ -10,7 +10,7 @@ function Header() {
 
   const navItems = [
     {
-      name: "",
+      name: "Home",
       slug: "/",
       active: authStatus,
     },
@@ -25,12 +25,12 @@ function Header() {
       active: !authStatus,
     },
     {
-      name: "All Posts",
+      name: "All Notices",
       slug: "/all-posts",
       active: authStatus,
     },
     {
-      name: "Add Post",
+      name: "Add Notice",
       slug: "/add-post",
       active: authStatus,
     },
@@ -45,7 +45,7 @@ function Header() {
               <Logo />
             </Link>
           </div>
-          <ul className="flex ml-auto">
+          <ul className="flex mx-auto items-center">
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>
@@ -59,7 +59,7 @@ function Header() {
               ) : null
             )}
             {authStatus && (
-              <li>
+              <li className="ml-auto">
                 <LogoutBtn />
               </li>
             )}

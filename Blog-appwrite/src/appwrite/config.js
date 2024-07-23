@@ -29,7 +29,7 @@ export class Service {
         }
       );
     } catch (error) {
-      console.log("Appwrite serive :: createPost :: error", error);
+      console.log("Appwrite service :: createPost :: error", error);
     }
   }
 
@@ -86,7 +86,7 @@ export class Service {
         queries
       );
     } catch (error) {
-      console.log("Appwrite serive :: getPosts :: error", error);
+      console.log("Appwrite service :: getPosts :: error", error);
       return false;
     }
   }
@@ -101,8 +101,8 @@ export class Service {
         file
       );
     } catch (error) {
-      console.log("Appwrite serive :: uploadFile :: error", error);
-      return false;
+      console.log("Appwrite service :: uploadFile :: error", error);
+      return true;
     }
   }
 
@@ -118,6 +118,16 @@ export class Service {
 
   getFilePreview(fileId) {
     return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+  }
+
+  // download File
+
+  downloadFile(fileId) {
+    const downloadlink = this.bucket.getFileDownload(
+      conf.appwriteBucketId,
+      fileId
+    );
+    window.open(downloadlink.href);
   }
 }
 

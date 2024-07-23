@@ -23,17 +23,8 @@ export default function Post() {
     } else navigate("/");
   }, [slug, navigate]);
 
-  const deletePost = () => {
-    appwriteService.deletePost(post.$id).then((status) => {
-      if (status) {
-        appwriteService.deleteFile(post.featuredImage);
-        navigate("/");
-      }
-    });
-  };
-
   return post ? (
-    <div className="py-8">
+    <div className="py-8 bg-gradient-to-r from-rose-100 to-teal-100">
       <Container>
         <div className="w-full flex justify-center mb-4 relative rounded-xl p-2">
           <img
@@ -49,16 +40,13 @@ export default function Post() {
                   Edit
                 </Button>
               </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
-                Delete
-              </Button>
             </div>
           )}
         </div>
         <div className="w-full mb-6 text-center">
-          <h1 className="text-2xl font-bold text-white">{post.title}</h1>
+          <h1 className="text-2xl font-bold text-black">{post.title}</h1>
         </div>
-        <div className="browser-css text-left text-white">{parse(post.content)}</div>
+        <div className="browser-css text-left text-black">{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;
