@@ -5,9 +5,11 @@ import parse from "html-react-parser";
 import { Button } from "./index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import moment from "moment";
 
-const PostCard = ({ $id, title, featuredImage, content }) => {
+const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
   const [mediaExists, setMediaExists] = useState(true);
+  const formattedDate = moment($createdAt).format("dddd, MMMM Do, YYYY [at] h:mm A");
 
   const handleDownload = async () => {
     if (!featuredImage) {
@@ -36,17 +38,19 @@ const PostCard = ({ $id, title, featuredImage, content }) => {
   };
 
   return (
-    <div className="w-full bg-white border border-gray-200 rounded-lg shadow">
-      <div className="p-5">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+    <div className="bg-white border border-gray-200 rounded-lg shadow">
+      <div className="p-5 w-full">
+        <h5 className="mb-4 text-2xl font-semibold tracking-tight text-slate-700">
           {title}
         </h5>
-        <span className="mb-3 font-normal text-gray-700">{parse(content)}</span>
+        <span className="font-medium mb-4 text-slate-500">
+          {parse(content)}
+        </span>
 
         {!mediaExists ? (
           <Button
             onClick={handleDownload}
-            className="inline-flex items-center mt-3 px-4 py-2 text-sm font-medium text-center text-white bg-yellow-400 rounded-lg hover:bg-yellow-500 focus:outline-none"
+            className="inline-flex items-center mt-5 px-4 py-2 text-sm font-medium text-center text-white bg-yellow-400 rounded-lg hover:bg-yellow-500 focus:outline-none"
           >
             No Media Added
             <svg
@@ -70,7 +74,7 @@ const PostCard = ({ $id, title, featuredImage, content }) => {
         ) : (
           <Button
             onClick={handleDownload}
-            className="inline-flex items-center mt-3 px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:outline-none"
+            className="inline-flex items-center mt-5 px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:outline-none"
           >
             Download Media
             <svg
@@ -93,7 +97,7 @@ const PostCard = ({ $id, title, featuredImage, content }) => {
 
         <Button
           onClick={deletePost}
-          className="inline-flex items-center mt-3 ml-3 px-4 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none"
+          className="inline-flex items-center mt-5 ml-3 px-4 py-2 text-sm font-medium text-center text-red-500 border-2 border-red-500 bg-transparent rounded-lg hover:bg-red-500 hover:text-white focus:ring-4 focus:outline-none"
         >
           Delete Notice
           <svg
@@ -113,9 +117,9 @@ const PostCard = ({ $id, title, featuredImage, content }) => {
             />
           </svg>
         </Button>
-        
+
         <Link to={`/post/${$id}`}>
-          <Button className="inline-flex items-center mt-3 ml-3 px-4 py-2 text-sm font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none">
+          <Button className="inline-flex items-center mt-6 ml-3 px-4 py-2 text-sm font-medium text-center text-green-500 bg-transparent border-2 border-green-500 rounded-lg hover:bg-green-500 hover:text-white focus:ring-4 focus:outline-none">
             Edit Notice
             <svg
               className="w-6 h-6 ms-2"
@@ -136,6 +140,10 @@ const PostCard = ({ $id, title, featuredImage, content }) => {
             </svg>
           </Button>
         </Link>
+
+        <p className="text-sm text-right mt-3 text-slate-400 italic">
+          Uploaded on: {formattedDate}
+        </p>
       </div>
       <ToastContainer
         position="top-right"

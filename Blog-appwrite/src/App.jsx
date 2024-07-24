@@ -3,11 +3,21 @@ import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
 import { Footer, Header } from "./components";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+
+  const location = useLocation();
+
+  // Define routes where header and footer should not be shown
+  const noHeaderFooterRoutes = ["/Users"];
+
+  // Determine if current route should hide header and footer
+  const shouldHideHeaderFooter = noHeaderFooterRoutes.includes(
+    location.pathname
+  );
 
   useEffect(() => {
     authService
@@ -25,14 +35,14 @@ function App() {
   return !loading ? (
     <div className="min-h-screen flex flex-wrap content-between">
       <div className="w-full block">
-        <Header />
+        {!shouldHideHeaderFooter && <Header />}
         <main>
           <Outlet />
         </main>
-        <Footer />
+        {!shouldHideHeaderFooter && <Footer />}
       </div>
     </div>
-  ) : null;
+  ) : "Loading...";
 }
 
 export default App;

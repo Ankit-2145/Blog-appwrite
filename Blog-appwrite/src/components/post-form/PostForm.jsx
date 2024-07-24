@@ -131,12 +131,12 @@ export default function PostForm({ post }) {
           className="mb-4"
           {...register("status", { required: true })}
         />
-        <Button type="submit" className="w-full my-2 hover:bg-blue-700">
+        <Button type="submit" className="w-full my-2 hover:bg-blue-700 text-white">
           {post ? "Update Notice" : "Add Notice"}
         </Button>
       </div>
       <div className="w-full md:w-1/3 pl-3 py-8">
-        <div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+        <div className="block max-w-sm mx-auto md:mx-0 p-6 bg-white border border-gray-200 rounded-lg shadow">
           <div
             className="flex p-2 text-sm text-blue-500 rounded-lg bg-blue-50"
             role="alert"

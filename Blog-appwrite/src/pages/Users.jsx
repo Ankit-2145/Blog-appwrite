@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, PostCard } from "../components";
+import { Container, UserCard } from "../components";
 import appwriteService from "../appwrite/config";
 
 function AllPosts() {
@@ -19,7 +19,7 @@ function AllPosts() {
         <div className="w-full">
           {posts.map((post) => (
             <div key={post.$id} className="p-2 w-full">
-              <PostCard {...post} />
+              <UserCard {...post} />
             </div>
           ))}
         </div>

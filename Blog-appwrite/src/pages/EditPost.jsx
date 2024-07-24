@@ -21,7 +21,7 @@ const EditPost = () => {
   }, [slug, navigate]);
 
   return post ? (
-    <div className="py-8 bg-gradient-to-r from-rose-100 to-teal-100">
+    <div className="py-8">
       <Container>
         <PostForm post={post} />
       </Container>

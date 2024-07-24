@@ -24,7 +24,7 @@ export default function Post() {
   }, [slug, navigate]);
 
   return post ? (
-    <div className="py-8 bg-gradient-to-r from-rose-100 to-teal-100">
+    <div className="py-8">
       <Container>
         <div className="max-w-md mx-auto  flex justify-center mb-4 relative rounded-xl p-2">
           <img
@@ -33,15 +33,15 @@ export default function Post() {
             className="rounded-xl w-1/2"
           />
         </div>
-        <div className="w-fit mx-auto mb-6 bg-white text-center rounded-md p-8">
-          <h1 className="text-2xl font-bold text-black">{post.title}</h1>
-          <div className="browser-css text-center text-black my-3">
+        <div className="w-fit mx-auto mb-6 bg-white text-center rounded-md p-8 shadow">
+          <h1 className="text-2xl font-bold text-slate-700">{post.title}</h1>
+          <div className="max-w-md browser-css text-center font-medium text-slate-500 my-5">
             {parse(post.content)}
           </div>
           {isAuthor && (
             <div>
               <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
+                <Button bgColor="bg-green-500" className="mr-3 text-white">
                   Edit Notice
                 </Button>
               </Link>
