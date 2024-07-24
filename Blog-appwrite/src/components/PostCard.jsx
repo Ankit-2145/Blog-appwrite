@@ -9,7 +9,9 @@ import moment from "moment";
 
 const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
   const [mediaExists, setMediaExists] = useState(true);
-  const formattedDate = moment($createdAt).format("dddd, MMMM Do, YYYY [at] h:mm A");
+  const formattedDate = moment($createdAt).format(
+    "dddd, MMMM Do, YYYY [at] h:mm A"
+  );
 
   const handleDownload = async () => {
     if (!featuredImage) {
@@ -31,10 +33,8 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
     });
     setTimeout(() => {
       toast.error("Notice Deleted Successfully");
-    }, 1000);
-    setTimeout(() => {
       window.location.reload();
-    }, 1500);
+    }, 1000);
   };
 
   return (
