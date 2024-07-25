@@ -39,13 +39,13 @@ function Header() {
   return (
     <header className="py-3 border-b-2">
       <Container>
-        <nav className="flex">
+        <nav className="flex justify-between">
           <div className="-mb-2">
             <Link to="/">
               <Logo />
             </Link>
           </div>
-          <ul className="flex mx-auto items-center">
+          <ul className="flex items-center">
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>

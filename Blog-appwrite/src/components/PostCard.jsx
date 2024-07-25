@@ -33,7 +33,6 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
     });
     setTimeout(() => {
       toast.error("Notice Deleted Successfully");
-      window.location.reload();
     }, 1000);
   };
 

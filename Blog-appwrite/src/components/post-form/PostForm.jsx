@@ -175,7 +175,7 @@ export default function PostForm({ post }) {
                 </li>
                 <li>
                   Remember that all fields are compulsory to fill except
-                  featuredImage.
+                  featured Image.
                 </li>
                 <p className="my-4">
                   Remember to meet these requirements or else the notice will

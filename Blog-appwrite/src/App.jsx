@@ -42,7 +42,11 @@ function App() {
         {!shouldHideHeaderFooter && <Footer />}
       </div>
     </div>
-  ) : "Loading...";
+  ) : (
+    <div className="mt-80">
+      <h1 className="text-3xl text-center text-blue-400 italic animate-pulse">Loading...</h1>
+    </div>
+  );
 }
 
 export default App;

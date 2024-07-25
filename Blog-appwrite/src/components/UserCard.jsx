@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 import { Button } from "./index";
 import moment from "moment";
 
-const PostCard = ({title, featuredImage, content, $createdAt }) => {
+const PostCard = ({$id, title, featuredImage, content, $createdAt }) => {
   const [mediaExists, setMediaExists] = useState(true);
   const formattedDate = moment($createdAt).format(
     "dddd, MMMM Do, YYYY [at] h:mm A"
