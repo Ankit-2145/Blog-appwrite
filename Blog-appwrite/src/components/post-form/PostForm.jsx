@@ -42,20 +42,44 @@ export default function PostForm({ post }) {
     } else {
       const file = await appwriteService.uploadFile(data.image[0]);
 
+      // if (file) {
+      //   const fileId = file.$id;
+      //   data.featuredImage = fileId;
+      //   const dbPost = await appwriteService.createPost({
+      //     ...data,
+      //     userId: userData.$id,
+      //   });
+      //   toast.success("Notice added successfully");
+      //   setTimeout(() => {
+      //     if (dbPost) {
+      //       navigate(`/all-posts`);
+      //     }
+      //   }, 1500);
+      // }
+
       if (file) {
         const fileId = file.$id;
-        data.featuredImage = fileId;
-        const dbPost = await appwriteService.createPost({
-          ...data,
-          userId: userData.$id,
-        });
-        toast.success("Notice added successfully");
-        setTimeout(() => {
-          if (dbPost) {
-            navigate(`/all-posts`);
-          }
-        }, 1500);
+        if (fileId) {
+          data.featuredImage = fileId;
+        } else {
+          console.error("File ID is undefined");
+        }
+      } else {
+        console.log("No file provided");
       }
+
+      const dbPost = await appwriteService.createPost({
+        ...data,
+        userId: userData.$id,
+      });
+
+      toast.success("Notice added successfully");
+
+      setTimeout(() => {
+        if (dbPost) {
+          navigate(`/all-posts`);
+        }
+      }, 1500);
     }
   };
 
@@ -131,7 +155,10 @@ export default function PostForm({ post }) {
           className="mb-4"
           {...register("status", { required: true })}
         />
-        <Button type="submit" className="w-full my-2 hover:bg-blue-700 text-white">
+        <Button
+          type="submit"
+          className="w-full my-2 hover:bg-blue-700 text-white"
+        >
           {post ? "Update Notice" : "Add Notice"}
         </Button>
       </div>
