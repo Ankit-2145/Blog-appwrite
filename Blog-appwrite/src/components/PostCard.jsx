@@ -3,8 +3,6 @@ import appwriteService from "../appwrite/config";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import { Button } from "./index";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
 
 const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
@@ -23,17 +21,6 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
     } catch (error) {
       setMediaExists(false);
     }
-  };
-
-  const deletePost = () => {
-    appwriteService.deletePost($id).then((status) => {
-      if (status) {
-        appwriteService.deleteFile(featuredImage);
-      }
-    });
-    setTimeout(() => {
-      toast.error("Notice Deleted Successfully");
-    }, 1000);
   };
 
   return (
@@ -94,34 +81,11 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
           </Button>
         )}
 
-        <Button
-          onClick={deletePost}
-          className="inline-flex items-center mt-5 ml-3 px-4 py-2 text-sm font-medium text-center text-red-500 border-2 border-red-500 bg-transparent rounded-lg hover:bg-red-500 hover:text-white focus:ring-4 focus:outline-none"
-        >
-          Delete Notice
-          <svg
-            className="w-4 h-4 ms-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeWidth="2"
-              d="m6 6 12 12m3-6a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-        </Button>
-
         <Link to={`/post/${$id}`}>
-          <Button className="inline-flex items-center mt-6 ml-3 px-4 py-2 text-sm font-medium text-center text-green-500 bg-transparent border-2 border-green-500 rounded-lg hover:bg-green-500 hover:text-white focus:ring-4 focus:outline-none">
+          <Button className="inline-flex items-center mt-6 ml-3 text-sm font-medium text-center text-green-500 bg-transparent border-2 border-green-500 rounded-lg hover:bg-green-500 hover:text-white focus:ring-4 focus:outline-none">
             Edit Notice
             <svg
-              className="w-6 h-6 ms-2"
+              className="w-4 h-4 ms-2"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -144,19 +108,6 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
           Uploaded on: {formattedDate}
         </p>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition:Bounce
-      />
     </div>
   );
 };
