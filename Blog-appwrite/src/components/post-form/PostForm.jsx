@@ -55,31 +55,60 @@ export default function PostForm({ post }) {
       //       navigate(`/all-posts`);
       //     }
       //   }, 1500);
+      // } else {
+      //   console.log("error");
       // }
 
-      if (file) {
+      if (file && file.$id) {
         const fileId = file.$id;
-        if (fileId) {
-          data.featuredImage = fileId;
-        } else {
-          console.error("File ID is undefined");
+        data.featuredImage = fileId;
+
+        try {
+          const dbPost = await appwriteService.createPost({
+            ...data,
+            userId: userData.$id,
+          });
+
+          toast.success("Notice added successfully");
+
+          setTimeout(() => {
+            if (dbPost) {
+              navigate(`/all-posts`);
+            }
+          }, 1500);
+        } catch (error) {
+          console.error("Error creating post:", error);
+          toast.error("Failed to add notice. Please try again.");
         }
       } else {
-        console.log("No file provided");
-      }
-
-      const dbPost = await appwriteService.createPost({
-        ...data,
-        userId: userData.$id,
-      });
-
-      toast.success("Notice added successfully");
-
-      setTimeout(() => {
-        if (dbPost) {
-          navigate(`/all-posts`);
+        if (!file) {
+          console.error("No file provided");
+          toast.warning(
+            "No file selected. The post will be created without an image."
+          );
+        } else {
+          console.error("File object is missing the $id property");
+          toast.error("Invalid file selected. Please try again.");
         }
-      }, 1500);
+
+        try {
+          const dbPost = await appwriteService.createPost({
+            ...data,
+            userId: userData.$id,
+          });
+
+          toast.success("Notice added successfully");
+
+          setTimeout(() => {
+            if (dbPost) {
+              navigate(`/all-posts`);
+            }
+          }, 1500);
+        } catch (error) {
+          console.error("Error creating post:", error);
+          toast.error("Failed to add notice. Please try again.");
+        }
+      }
     }
   };
 
