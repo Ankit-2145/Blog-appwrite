@@ -88,7 +88,7 @@ export default function PostForm({ post }) {
           );
         } else {
           console.error("File object is missing the $id property");
-          toast.error("Invalid file selected. Please try again.");
+          toast.error("No file selected. The post will be created without an image");
         }
 
         try {
