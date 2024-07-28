@@ -237,6 +237,9 @@ export default function PostForm({ post }) {
                   Remember to meet these requirements or else the notice will
                   not be Added.
                 </p>
+                <li>
+                 And if in any case media file gives an error on uploading. Try refreshing the page.
+                </li>
               </ul>
             </div>
           </div>

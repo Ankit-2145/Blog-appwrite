@@ -24,7 +24,7 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow">
+    <div className="bg-white/85 border border-gray-200 rounded-lg shadow">
       <div className="p-5 w-full">
         <h5 className="mb-4 text-2xl font-semibold tracking-tight text-slate-700">
           {title}
