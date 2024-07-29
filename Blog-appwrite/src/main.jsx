@@ -42,14 +42,14 @@ const router = createBrowserRouter([
           </AuthLayout>
         ),
       },
-      {
-        path: "/signup",
-        element: (
-          <AuthLayout authentication={false}>
-            <Signup />
-          </AuthLayout>
-        ),
-      },
+      // {
+      //   path: "/signup",
+      //   element: (
+      //     <AuthLayout authentication={false}>
+      //       <Signup />
+      //     </AuthLayout>
+      //   ),
+      // },
       {
         path: "/all-posts",
         element: (
