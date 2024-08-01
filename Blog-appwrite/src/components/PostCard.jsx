@@ -33,6 +33,31 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
           {parse(content)}
         </span>
 
+        {featuredImage && (
+          <Button
+            onClick={handleDownload}
+            className="inline-flex items-center mt-5 px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:outline-none"
+          >
+            Download Media
+            <svg
+              className="rotate-90 w-3.5 h-3.5 ms-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </Button>
+        )}
+
+        {/* 
         {!mediaExists ? (
           <Button
             onClick={handleDownload}
@@ -79,7 +104,7 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
               />
             </svg>
           </Button>
-        )}
+        )} */}
 
         <Link to={`/post/${$id}`}>
           <Button className="inline-flex items-center mt-6 ml-3 text-sm font-medium text-center text-green-500 bg-transparent border-2 border-green-500 rounded-lg hover:bg-green-500 hover:text-white focus:ring-4 focus:outline-none">

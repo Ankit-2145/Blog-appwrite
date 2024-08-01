@@ -78,9 +78,7 @@ export class Service {
     }
   }
 
-  async getPosts(
-    queries = [Query.equal("status", "active")]
-  ) {
+  async getPosts(queries = [Query.equal("status", "active")]) {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
@@ -127,7 +125,7 @@ export class Service {
   downloadFile(fileId) {
     const downloadlink = this.bucket.getFileDownload(
       conf.appwriteBucketId,
-      fileId
+      fileId,
     );
     window.open(downloadlink.href);
   }

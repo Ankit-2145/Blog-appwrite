@@ -33,31 +33,7 @@ const PostCard = ({ $id, title, featuredImage, content, $createdAt }) => {
             {parse(content)}
           </span>
 
-          {!mediaExists ? (
-            <Button
-              onClick={handleDownload}
-              className="inline-flex items-center mt-5 px-4 py-2 text-sm font-medium text-center text-white bg-yellow-400 rounded-lg hover:bg-yellow-500 focus:outline-none"
-            >
-              No Media Added
-              <svg
-                className="w-6 h-6 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-            </Button>
-          ) : (
+          {featuredImage && (
             <Button
               onClick={handleDownload}
               className="inline-flex items-center mt-5 px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:outline-none"
