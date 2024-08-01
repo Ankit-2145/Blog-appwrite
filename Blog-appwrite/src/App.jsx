@@ -12,7 +12,7 @@ function App() {
   const location = useLocation();
 
   // Define routes where header and footer should not be shown
-  const noHeaderFooterRoutes = ["/users" && "/Users"];
+  const noHeaderFooterRoutes = ["/users"];
 
   // Determine if current route should hide header and footer
   const shouldHideHeaderFooter = noHeaderFooterRoutes.includes(
